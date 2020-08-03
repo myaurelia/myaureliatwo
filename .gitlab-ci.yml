@@ -1,12 +1,20 @@
-test:mypages:
+build:
     image: fedora:latest
     script:
-      - cd public-website
       - pwd 
       - ls -a
       - time dnf update -y
-      - time dnf install firefox nodejs npm -y
-      - time npm install -g @angular/cli yarn
+      - time dnf install firefox nodejs npm yarnpkg -y
       - time yarn
-      - time ng test --no-watch --code-coverage
+      - time yarn run build
+
+test:
+    image: fedora:latest
+    script:
+      - pwd 
+      - ls -a
+      - time dnf update -y
+      - time dnf install firefox nodejs npm yarnpkg -y
+      - time yarn
+      - time yarn run test
   
